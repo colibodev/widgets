@@ -84,7 +84,7 @@ interface colibo {
 
     helpers: {
 
-        addGraphResouce: (resource: string) => void;
+        authorize(authority: string, scopes: string) => Promise<string>;
 
         formatDate: (date: string | Date, dateFormat?: string) => string;
 
@@ -110,7 +110,7 @@ A couple of these might require a little elaboration.
 
 - **event$** is a ([RxJS](https://rxjs-dev.firebaseapp.com/)) stream of platform events. The observable have a `subscribe` method on it, that notifies a callback function for each platform event. These platform events all have `type` and `data` properties, and can optionally have a `customData` property as well. Subscribe for navigation-, behaviour-, timing events and more. 
 - **helpers** contains a number of helper functions:
-  - **addGraphResouce** is a method to add a MS graph resource that Colibo will automatically authenticate for you 
+  - **authorize** use this to obtain a bearer token to MS or Google for use when calling their api's. The user must be authenticated through their service to use this.
   - **formatDate** can be used to format strings or dates using the correct locale. Using DateFNS formatting: (https://date-fns.org/v2.8.1/docs/format)
   - **http** is an object that contains references to the httpClient method of the same name. 
   - **httpClient** is a reference to an instance of the Angular [httpClient](https://angular.io/api/common/http/HttpClient). Use these to achieve authorized access to Colibo-services, and to have a convenient way to do http-requests (without needing polyfills for legacy browsers).
