@@ -29,17 +29,28 @@ Widgets are defined by the following fields (and can furthermore be imported/exp
 -   **AllowedLocations** A list of allowed locations (see above)
 -   **InitialHeight** A pixel value for the initial height of the widget. This is a means to avoid jumping/shifting the layout when your widget loads (the value will be set as style.minHeight on the element). 
 -   **Configuration-definition** Define the configuration-options for your widget as a (nested) list of: 
-      - **Type** The type of the option (ex. string, boolean, number and etc.)
+      - **Type** The type of the option (ex. string, boolean, number and more ([full list](#built-in-configuration-field-types))
       - **Key** Text which is used by the widget's functionality to access said option's value
       - **Tab** Value used for specifying where if the option will be assigned to the Content, Content settings or Widget settings tabs.  
       - **Label** Text which is displayed on top of the option when editing/adding a widget
       - **Required** Boolean used for specifying if the option is required
+      - **Requires** String to indicate another *boolean* type field that must be true before showing this field
       - **Description** Text which is displayed below the label describing the option specification
       - **DefaultValue** Value that is going to be set to the option
 
 Use the "builder" in colibo to define your configuration. See below for details about the custom type.
 
 The widget-registration is available as a json-string from the "source"-tab, and can be uploaded for easy installation (see the accompanying widget.json in the examples linked below).
+
+### Built-in configuration field types
+- **string** A basic string input
+- **number** A basic number input
+- **boolean** A basic checkbox
+- **list** Allows the user to add items to a list (e.g. banner widget). Use the *configuration* field to define which fields should appear on each list item
+- **group** Enables grouping of fields to give them a common description and header
+- **color** A color picker that will save a color code (e.g. #aabbcc)
+- **custom** Use a widget as configuration element (see [Custom configuration field widgets](#custom-configuration-field-widgets) for more details)
+
 
 ## Widget instances
 A widget can be used in multiple instances, with different configurations. Furthermore widget-instances each have `recipients` and can be `disabled`. 
@@ -49,6 +60,7 @@ A widget can be used in multiple instances, with different configurations. Furth
 For all widget-locations, Colibo will initiate the widgets that are targeted to the user (and that are not disabled). 
 
 When Colibo instantiates your widget custom-element, it will set the instance's stored configuration to the element as a property called `configuration` (string). The appropriate `locationType` (see above), optional `locationContextId` (number) and `instanceId` (number) will also be set. 
+
 
 ## Special Widget types
 
