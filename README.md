@@ -29,14 +29,15 @@ Widgets are defined by the following fields (and can furthermore be imported/exp
 -   **AllowedLocations** A list of allowed locations (see above)
 -   **InitialHeight** A pixel value for the initial height of the widget. This is a means to avoid jumping/shifting the layout when your widget loads (the value will be set as style.minHeight on the element). 
 -   **Configuration-definition** Define the configuration-options for your widget as a (nested) list of: 
-      - **Type** The type of the option (ex. string, boolean, number and more ([full list](#built-in-configuration-field-types))
-      - **Key** Text which is used by the widget's functionality to access said option's value
-      - **Tab** Value used for specifying where if the option will be assigned to the Content, Content settings or Widget settings tabs.  
-      - **Label** Text which is displayed on top of the option when editing/adding a widget
-      - **Required** Boolean used for specifying if the option is required
-      - **Requires** String to indicate another *boolean* type field that must be true before showing this field
-      - **Description** Text which is displayed below the label describing the option specification
-      - **DefaultValue** Value that is going to be set to the option
+      - **type** The type of the option (ex. string, boolean, number and more ([full list](#built-in-configuration-field-types)).
+      - **key** Text which is used by the widget's functionality to access said option's value.
+      - **tab** Value used for specifying where if the option will be assigned to the Content, Content settings or Widget settings tabs.  
+      - **label** Text which is displayed on top of the option when editing/adding a widget.
+      - **description** Text which is displayed below the label describing the option specification.
+      - **required** Boolean used for specifying if the option is required.
+      - **requires** String to indicate another field that must be contain the correct value before showing this field (default true, or specify value in  `requiresValue`).
+      - **requiresValue** (Optional) string to specify which value the `requires` field should contain for this field to show. Can contain a number of acceptable values, separate by ; (e.g. "dog;flower"). 
+      - **defaultValue** Value that is going to be set to the option.
 
 Use the "builder" in colibo to define your configuration. See below for details about the custom type.
 
