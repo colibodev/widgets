@@ -78,7 +78,9 @@ For widgets displayed in tabs, Colibo will maintain an `active` (boolean) proper
 
 This allows making custom fields that uses a webcomponent for control and logic. This field-type is meant for making fields with special editors (e.g. pick location on a map) or fields that should send information to third party (e.g. private tokens that shouldn't be passed through the frontend application).
 
-The element must maintain a `value`-property that holds the colibo-stored value. The element can implement a `beforeSave` method that colibo will call when the editor saves the instance. If this method returns a promise Colibo will wait for it to resolve, before saving the instance. The element is instantiated with the current value on the `value` property and an `instanceId` property. When creating a new instance, the `instanceId` property will be available when `beforeSave` is called. 
+The element must maintain a `value`-property that holds the colibo-stored value. The element can implement a `beforeSave` method that colibo will call when the editor saves the instance. If this method returns a promise Colibo will wait for it to resolve, before saving the instance. The element is instantiated with the current value on the `value` property and an `instanceId` property. When creating a new instance, the `instanceId` property will be available when `beforeSave` is called.
+
+To notify the surrounding editor that a change has been made inside the element (for example to enable the save button), a bubbling event `valueChange` should be dispatched with the detail object being the value.
 
 When defining your custom-configuration widget (in the widget's configuration-definition), you can optionally set an element-configuration, that will act as the instance's configuration (being instantiated on the `configuration` property). 
 
